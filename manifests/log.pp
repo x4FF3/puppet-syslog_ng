@@ -4,9 +4,13 @@
 #
 # === Parameters
 #
-define syslog_ng::log ( $sources,$filters=undef,$destinations ){
+define syslog_ng::log (
+  $destinations,
+  $sources,
+  $filters=undef,
+  ){
 
-  concat::fragment { "/etc/syslog-ng/syslog-ng.conf-main-source-${title}":
+  concat::fragment { "/etc/syslog-ng/syslog-ng.conf-main-log-${title}":
     target  => '/etc/syslog-ng/syslog-ng.conf',
     content => template("${module_name}/log.erb"),
     order   => 5,

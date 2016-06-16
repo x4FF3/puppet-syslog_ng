@@ -8,7 +8,7 @@ define syslog_ng::destination ( $definition ){
 
   $type = 'destination'
 
-  concat::fragment { "/etc/syslog-ng/syslog-ng.conf-main-source-${title}":
+  concat::fragment { "/etc/syslog-ng/syslog-ng.conf-main-destination-${title}":
     target  => '/etc/syslog-ng/syslog-ng.conf',
     content => template("${module_name}/statement.erb"),
     order   => 4,

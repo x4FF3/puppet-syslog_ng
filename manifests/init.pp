@@ -8,6 +8,10 @@
 #   include scl-root if working
 #   default is @include "`scl-root`/system/tty10.conf"
 #
+# [*version*]
+#    sets the version number of your syslog-ng package 
+#    default is '3.3'
+#
 # [*dir_perm*]
 #   configures default permissions for newly created directorys
 #   default is '0755'
@@ -27,6 +31,7 @@
 #   default is yes
 #
 class syslog_ng (
+  $version  = $::syslog_ng::params::version,
   $use_dns  = $::syslog_ng::params::use_dns,
   $use_fqdn = $::syslog_ng::params::use_fqdn,
   $perm     = $::syslog_ng::params::perm,
@@ -34,4 +39,5 @@ class syslog_ng (
   ) inherits syslog_ng::params {
   include syslog_ng::install
   include syslog_ng::config
+  Class['syslog_ng::install'] -> Class['syslog_ng::config']
 }

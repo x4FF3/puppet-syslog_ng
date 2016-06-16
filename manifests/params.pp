@@ -5,6 +5,7 @@
 
 class syslog_ng::params {
 
+  $version   = '3.3'
   $use_dns   = false
   $use_fqdn  = true
   $perm      ='0640'

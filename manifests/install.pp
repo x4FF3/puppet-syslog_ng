@@ -9,7 +9,7 @@ class syslog_ng::install {
     ensure => installed,
   }
   package { 'rsyslog':
-    ensure => purged,
+    ensure => absent,
   }
 
 }
