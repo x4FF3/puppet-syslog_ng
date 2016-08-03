@@ -1,5 +1,5 @@
 {
-  "name": "micha-syslog_ng",
+  "name": "norisnetwork-syslog_ng",
   "version": "0.1.0",
   "author": "norisnetwork",
   "summary": "This Module configures syslog-ng",
@@ -8,7 +8,8 @@
   "project_page": "https://github.com/noris-network/puppet-syslog_ng",
   "issues_url": "https://github.com/noris-network/puppet-syslog_ng/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs/stdlib"},
+    {"name":"puppetlabs/concat"}
   ],
   "data_provider": null
 }
