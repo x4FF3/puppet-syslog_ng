@@ -45,7 +45,9 @@ class syslog_ng (
   $frac_digits    = $::syslog_ng::params::frac_digits,
   $keep_timestamp = $::syslog_ng::params::keep_timestamp,
   ) inherits syslog_ng::params {
-  include syslog_ng::install
-  include syslog_ng::config
+  include ::syslog_ng::install
+  include ::syslog_ng::config
+  include ::syslog_ng::service
   Class['syslog_ng::install'] -> Class['syslog_ng::config']
+  Class['syslog_ng::config'] ~> Class['syslog_ng::service']
 }

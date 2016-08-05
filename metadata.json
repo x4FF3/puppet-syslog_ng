@@ -1,6 +1,6 @@
 {
   "name": "norisnetwork-syslog_ng",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "norisnetwork",
   "summary": "This Module configures syslog-ng",
   "license": "LGPL",
