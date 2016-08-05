@@ -11,6 +11,7 @@
     {"name":"puppetlabs/stdlib"},
     {"name":"puppetlabs/concat"}
   ],
-  "data_provider": null
+  "data_provider": null,
+  "tags": ["syslog_ng"]
 }
 
