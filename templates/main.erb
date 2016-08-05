@@ -16,7 +16,8 @@ options {
         dir_perm       (<%= @dir_perm %>);
         use_dns        (<% if @use_dns  %>yes<% else %>no<% end %>);
         use_fqdn       (<% if @use_fqdn %>yes<% else %>no<% end %>);
-	stats_freq     (0);
-	bad_hostname   ("^gconfd$");
+        stats_freq     (0);
+        bad_hostname   ("^gconfd$");
+        frac_digits    (<%= @frac_digits %>);
 };
 
