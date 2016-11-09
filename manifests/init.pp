@@ -40,23 +40,15 @@
 #   should this module install the syslog-ng package for the platform?
 #   default is true
 class syslog_ng (
-  $version         = $::syslog_ng::params::version,
-  $use_dns         = $::syslog_ng::params::use_dns,
-  $use_fqdn        = $::syslog_ng::params::use_fqdn,
-  $perm            = $::syslog_ng::params::perm,
-  $dir_perm        = $::syslog_ng::params::dir_perm,
-  $frac_digits     = $::syslog_ng::params::frac_digits,
-  $keep_timestamp  = $::syslog_ng::params::keep_timestamp,
-  $manage_packages = $::syslog_ng::params::manage_packages,
+  String $version          = $::syslog_ng::params::version,
+  Boolean $use_dns         = $::syslog_ng::params::use_dns,
+  Boolean $use_fqdn        = $::syslog_ng::params::use_fqdn,
+  String $perm             = $::syslog_ng::params::perm,
+  String $dir_perm         = $::syslog_ng::params::dir_perm,
+  Integer $frac_digits     = $::syslog_ng::params::frac_digits,
+  Boolean $keep_timestamp  = $::syslog_ng::params::keep_timestamp,
+  Boolean $manage_packages = $::syslog_ng::params::manage_packages,
 ) inherits syslog_ng::params {
-  validate_string($version)
-  validate_bool($use_dns)
-  validate_bool($use_fqdn)
-  validate_integer($perm)
-  validate_integer($dir_perm)
-  validate_integer($frac_digits)
-  validate_bool($keep_timestamp)
-  validate_bool($manage_packages)
 
   if $manage_packages {
     class{'::syslog_ng::install':

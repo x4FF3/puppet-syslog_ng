@@ -1,9 +1,14 @@
+<%
+  $dns = $syslog_ng::use_dns ? { true => 'yes', false => 'no' }
+  $fqdn = $syslog_ng::use_fqdn ? { true => 'yes', false => 'no' }
+-%>
 ###############################################################
 # This file is managed by puppet. Manual editing of file is   #
 # strongly discouraged and might lead to unexpected behaviour!#
 ###############################################################
 
-@version: <%= @version %>
+@version: <%= $syslog_ng::version %>
+
 
 options {
         chain_hostnames(0);
@@ -12,13 +17,13 @@ options {
         log_fifo_size  (4096);
         create_dirs    (yes);
         group          (adm);
-        perm           (<%= @perm %>);
-        dir_perm       (<%= @dir_perm %>);
-        use_dns        (<% if @use_dns  %>yes<% else %>no<% end %>);
-        use_fqdn       (<% if @use_fqdn %>yes<% else %>no<% end %>);
+        perm           (<%= $syslog_ng::perm %>);
+        dir_perm       (<%= $syslog_ng::dir_perm %>);
+        use_dns        (<%= $dns %>);
+        use_fqdn       (<%= $fqdn %>);
         stats_freq     (0);
         bad_hostname   ("^gconfd$");
-        frac_digits    (<%= @frac_digits %>);
-        keep_timestamp (<%= @keep_timestamp %>);
+        frac_digits    (<%= $syslog_ng::frac_digits %>);
+        keep_timestamp (<%= $syslog_ng::keep_timestamp %>);
 };
 
