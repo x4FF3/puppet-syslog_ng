@@ -36,18 +36,33 @@
 # [*keep_timestamp*]
 #   configure syslog-ng keep_timestamp option
 #
+# [*manage_packages*]
+#   should this module install the syslog-ng package for the platform?
+#   default is true
 class syslog_ng (
-  $version        = $::syslog_ng::params::version,
-  $use_dns        = $::syslog_ng::params::use_dns,
-  $use_fqdn       = $::syslog_ng::params::use_fqdn,
-  $perm           = $::syslog_ng::params::perm,
-  $dir_perm       = $::syslog_ng::params::dir_perm,
-  $frac_digits    = $::syslog_ng::params::frac_digits,
-  $keep_timestamp = $::syslog_ng::params::keep_timestamp,
-  ) inherits syslog_ng::params {
-  include ::syslog_ng::install
-  include ::syslog_ng::config
-  include ::syslog_ng::service
-  Class['syslog_ng::install'] -> Class['syslog_ng::config']
-  Class['syslog_ng::config'] ~> Class['syslog_ng::service']
+  $version         = $::syslog_ng::params::version,
+  $use_dns         = $::syslog_ng::params::use_dns,
+  $use_fqdn        = $::syslog_ng::params::use_fqdn,
+  $perm            = $::syslog_ng::params::perm,
+  $dir_perm        = $::syslog_ng::params::dir_perm,
+  $frac_digits     = $::syslog_ng::params::frac_digits,
+  $keep_timestamp  = $::syslog_ng::params::keep_timestamp,
+  $manage_packages = $::syslog_ng::params::manage_packages,
+) inherits syslog_ng::params {
+  validate_string($version)
+  validate_bool($use_dns)
+  validate_bool($use_fqdn)
+  validate_integer($perm)
+  validate_integer($dir_perm)
+  validate_integer($frac_digits)
+  validate_bool($keep_timestamp)
+  validate_bool($manage_packages)
+
+  if $manage_packages {
+    class{'::syslog_ng::install':
+      before => Class['::syslog_ng::config'],
+    }
+  }
+  class{'::syslog_ng::config':} ~>
+  class{'::syslog_ng::service':}
 }
