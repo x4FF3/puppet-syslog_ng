@@ -11,6 +11,7 @@ define syslog_ng::log (
   ){
 
   $data = {
+    'title'        => $title,
     'destinations' => $destinations,
     'sources'      => $sources,
     'filters'      => $filters,
